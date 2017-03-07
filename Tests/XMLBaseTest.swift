@@ -30,12 +30,12 @@ class XMLBaseTest: XCTestCase {
         + "</p>"
         + "</body></html>"
     
-    func loadHTHLDoc() throws -> XMLDoc {
+    func loadHTHLDoc() throws -> VinXML.XMLDocument {
         let htmlLocation = XMLBaseTest.bundle.url(forResource: "vincode.io", withExtension: "html")
         guard let html = try? String(contentsOf: htmlLocation!) else {
             fatalError()
         }
-        return try XMLDoc(html: html)!
+        return try XMLDocument(html: html)!
     }
     
 }

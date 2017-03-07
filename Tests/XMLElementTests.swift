@@ -14,7 +14,7 @@ class XMLElementTests: XMLBaseTest {
 
     func testRenameNode() throws {
         
-        let doc = try XMLDoc(html: testHTML)
+        let doc = try XMLDocument(html: testHTML)
         
         var docDivs = try doc?.query(xpath: "//*/div")
         XCTAssertEqual(6, docDivs?.count)
@@ -31,7 +31,7 @@ class XMLElementTests: XMLBaseTest {
     
     func testNextSibling() throws {
         
-        let doc = try XMLDoc(html: testHTML)
+        let doc = try XMLDocument(html: testHTML)
         let firstPara = try doc?.queryFirst(xpath: "//*[@id='first']")
         
         var nextElement = firstPara!.nextSibling()

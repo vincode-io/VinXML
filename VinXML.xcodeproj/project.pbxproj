@@ -11,7 +11,7 @@
 		519F635D1E6D0DFA0074528A /* String+VinXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63501E6D0DFA0074528A /* String+VinXML.swift */; };
 		519F635E1E6D0DFA0074528A /* XMLAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63511E6D0DFA0074528A /* XMLAttribute.swift */; };
 		519F635F1E6D0DFA0074528A /* XMLAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63521E6D0DFA0074528A /* XMLAttributes.swift */; };
-		519F63601E6D0DFA0074528A /* XMLDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63531E6D0DFA0074528A /* XMLDoc.swift */; };
+		519F63601E6D0DFA0074528A /* XMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63531E6D0DFA0074528A /* XMLDocument.swift */; };
 		519F63611E6D0DFA0074528A /* XMLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63541E6D0DFA0074528A /* XMLElement.swift */; };
 		519F63621E6D0DFA0074528A /* XMLElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63551E6D0DFA0074528A /* XMLElements.swift */; };
 		519F63631E6D0DFA0074528A /* XMLElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63561E6D0DFA0074528A /* XMLElementType.swift */; };
@@ -57,7 +57,7 @@
 		519F63501E6D0DFA0074528A /* String+VinXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+VinXML.swift"; sourceTree = "<group>"; };
 		519F63511E6D0DFA0074528A /* XMLAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLAttribute.swift; sourceTree = "<group>"; };
 		519F63521E6D0DFA0074528A /* XMLAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLAttributes.swift; sourceTree = "<group>"; };
-		519F63531E6D0DFA0074528A /* XMLDoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLDoc.swift; sourceTree = "<group>"; };
+		519F63531E6D0DFA0074528A /* XMLDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLDocument.swift; sourceTree = "<group>"; };
 		519F63541E6D0DFA0074528A /* XMLElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLElement.swift; sourceTree = "<group>"; };
 		519F63551E6D0DFA0074528A /* XMLElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLElements.swift; sourceTree = "<group>"; };
 		519F63561E6D0DFA0074528A /* XMLElementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLElementType.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 				519F63501E6D0DFA0074528A /* String+VinXML.swift */,
 				519F63511E6D0DFA0074528A /* XMLAttribute.swift */,
 				519F63521E6D0DFA0074528A /* XMLAttributes.swift */,
-				519F63531E6D0DFA0074528A /* XMLDoc.swift */,
+				519F63531E6D0DFA0074528A /* XMLDocument.swift */,
 				519F63541E6D0DFA0074528A /* XMLElement.swift */,
 				519F63551E6D0DFA0074528A /* XMLElements.swift */,
 				519F63561E6D0DFA0074528A /* XMLElementType.swift */,
@@ -234,7 +234,7 @@
 				519F63671E6D0DFA0074528A /* XMLVisitor.swift in Sources */,
 				519F63661E6D0DFA0074528A /* XMLNode.swift in Sources */,
 				519F63681E6D0DFA0074528A /* XMLVisitorHost.swift in Sources */,
-				519F63601E6D0DFA0074528A /* XMLDoc.swift in Sources */,
+				519F63601E6D0DFA0074528A /* XMLDocument.swift in Sources */,
 				519F63621E6D0DFA0074528A /* XMLElements.swift in Sources */,
 				519F63631E6D0DFA0074528A /* XMLElementType.swift in Sources */,
 				519F635D1E6D0DFA0074528A /* String+VinXML.swift in Sources */,

@@ -11,7 +11,7 @@ import libxml2
 
 public class XMLElement: XMLNode, XMLVisitorHost {
 
-    weak var doc: XMLDoc?
+    weak var doc: XMLDocument?
     weak var parent: XMLElement?
     var nodePtr: xmlNodePtr!
     
@@ -77,7 +77,7 @@ public class XMLElement: XMLNode, XMLVisitorHost {
 //    
 //    }
     
-    public init(doc: XMLDoc?, parent: XMLElement?, nodePtr: xmlNodePtr!) {
+    public init(doc: XMLDocument?, parent: XMLElement?, nodePtr: xmlNodePtr!) {
         self.doc = doc
         self.parent = parent
         self.nodePtr = nodePtr

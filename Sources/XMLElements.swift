@@ -12,7 +12,7 @@ public class XMLElements: Sequence {
     
     var root: XMLElement?
 
-    public init(doc: XMLDoc?, parent: XMLElement?) {
+    public init(doc: XMLDocument?, parent: XMLElement?) {
         guard let firstChildNodePtr = parent?.nodePtr.pointee.children else { return }
         self.root = XMLElement(doc: doc, parent: parent, nodePtr: firstChildNodePtr)
     }

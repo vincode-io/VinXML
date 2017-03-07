@@ -36,7 +36,7 @@ class XMLDocTests: XMLBaseTest {
     
     func testRemoveByXpath() throws {
         
-        let doc = try XMLDoc(html: testHTML)
+        let doc = try XMLDocument(html: testHTML)
         
         var paras = try doc?.query(xpath: "//*/p")
         XCTAssertEqual(3, paras?.count)

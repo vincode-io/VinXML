@@ -9,7 +9,7 @@
 import Foundation
 import libxml2
 
-public class XMLDoc: XMLXPath {
+public class XMLDocument: XMLXPath {
     
     var docPtr: xmlDocPtr!
     var pathCtx: xmlXPathContextPtr!
