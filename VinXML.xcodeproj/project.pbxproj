@@ -52,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		519B65ED1E6ECD4E00478966 /* XMLAttributeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLAttributeTests.swift; sourceTree = "<group>"; };
+		519B65EF1E6EF2C800478966 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		519F634E1E6D0DFA0074528A /* libxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libxml2.h; sourceTree = "<group>"; };
 		519F634F1E6D0DFA0074528A /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		519F63501E6D0DFA0074528A /* String+VinXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+VinXML.swift"; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
+				519B65EF1E6EF2C800478966 /* README.md */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_10 /* Tests */,
