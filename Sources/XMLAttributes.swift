@@ -7,7 +7,7 @@
 //
 import libxml2
 
-public struct XMLAttributes: Collection {
+public class XMLAttributes: Collection {
 
     unowned var parent: XMLElement
 
