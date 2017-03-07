@@ -15,9 +15,7 @@ public class XMLDoc: XMLXPath {
     var pathCtx: xmlXPathContextPtr!
     
     public var raw: String? {
-        get {
-            return root.raw
-        }
+        return root.raw
     }
     
     public convenience init(xml: String) throws {
@@ -52,9 +50,7 @@ public class XMLDoc: XMLXPath {
     }
     
     public var root: XMLElement {
-        get {
-            return XMLElement.init(doc: self, parent: nil, nodePtr: xmlDocGetRootElement(docPtr))
-        }
+        return XMLElement.init(doc: self, parent: nil, nodePtr: xmlDocGetRootElement(docPtr))
     }
     
     public func query(xpath: String) throws -> [XMLElement] {

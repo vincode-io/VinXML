@@ -32,35 +32,29 @@ public class XMLElement: XMLNode, XMLVisitorHost {
     }
     
     public var content: String? {
-        get {
-            let content = xmlNodeGetContent(nodePtr)
-            defer { xmlFree(content) }
-            if content != nil {
-                return String(cString: content!).trimDownAllWhitespaces()
-            } else {
-                return nil
-            }
+        let content = xmlNodeGetContent(nodePtr)
+        defer { xmlFree(content) }
+        if content != nil {
+            return String(cString: content!).trimDownAllWhitespaces()
+        } else {
+            return nil
         }
     }
     
     public var hasContent: Bool {
-        get {
-            return content != nil
-        }
+        return content != nil
     }
     
     public var raw: String? {
-        get {
-            guard let nodePtr = nodePtr else {
-                return nil
-            }
-            if let buffer = xmlBufferCreate() {
-                xmlNodeDump(buffer, nodePtr.pointee.doc, nodePtr, 0, 0)
-                defer { xmlBufferFree(buffer) }
-                return String(cString: buffer.pointee.content)
-            } else {
-                return nil
-            }
+        guard let nodePtr = nodePtr else {
+            return nil
+        }
+        if let buffer = xmlBufferCreate() {
+            xmlNodeDump(buffer, nodePtr.pointee.doc, nodePtr, 0, 0)
+            defer { xmlBufferFree(buffer) }
+            return String(cString: buffer.pointee.content)
+        } else {
+            return nil
         }
     }
     

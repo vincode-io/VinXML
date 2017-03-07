@@ -18,15 +18,11 @@ public class XMLElements: Sequence {
     }
     
     var isEmpty: Bool {
-        get {
-            return root == nil
-        }
+        return root == nil
     }
     
     var first: XMLElement? {
-        get {
-            return root
-        }
+        return root
     }
     
     public func makeIterator() -> AnyIterator<XMLElement> {
