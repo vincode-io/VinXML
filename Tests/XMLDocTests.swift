@@ -38,13 +38,13 @@ class XMLDocTests: XMLBaseTest {
         
         let doc = try XMLDoc(html: testHTML)
         
-        var paras = try doc.query(xpath: "//*/p")
-        XCTAssertEqual(3, paras.count)
+        var paras = try doc?.query(xpath: "//*/p")
+        XCTAssertEqual(3, paras?.count)
         
-        try doc.remove(xpath: "//*[@id='second']")
+        try doc?.remove(xpath: "//*[@id='second']")
         
-        paras = try doc.query(xpath: "//*/p")
-        XCTAssertEqual(2, paras.count)
+        paras = try doc?.query(xpath: "//*/p")
+        XCTAssertEqual(2, paras?.count)
         
     }
 

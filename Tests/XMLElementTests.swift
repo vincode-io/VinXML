@@ -16,23 +16,23 @@ class XMLElementTests: XMLBaseTest {
         
         let doc = try XMLDoc(html: testHTML)
         
-        var docDivs = try doc.query(xpath: "//*/div")
-        XCTAssertEqual(6, docDivs.count)
+        var docDivs = try doc?.query(xpath: "//*/div")
+        XCTAssertEqual(6, docDivs?.count)
         
-        docDivs[3].name = "span"
+        docDivs?[3].name = "span"
         
-        docDivs = try doc.query(xpath: "//*/div")
-        XCTAssertEqual(5, docDivs.count)
+        docDivs = try doc?.query(xpath: "//*/div")
+        XCTAssertEqual(5, docDivs?.count)
         
-        let spanDivs = try doc.query(xpath: "//*/span")
-        XCTAssertEqual(1, spanDivs.count)
+        let spanDivs = try doc?.query(xpath: "//*/span")
+        XCTAssertEqual(1, spanDivs?.count)
         
     }
     
     func testNextSibling() throws {
         
         let doc = try XMLDoc(html: testHTML)
-        let firstPara = try doc.queryFirst(xpath: "//*[@id='first']")
+        let firstPara = try doc?.queryFirst(xpath: "//*[@id='first']")
         
         var nextElement = firstPara!.nextSibling()
         XCTAssertEqual("p1div1", nextElement!.attributes["id"]!.content)

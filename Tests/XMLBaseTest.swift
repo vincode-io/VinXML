@@ -35,7 +35,7 @@ class XMLBaseTest: XCTestCase {
         guard let html = try? String(contentsOf: htmlLocation!) else {
             fatalError()
         }
-        return try XMLDoc(html: html)
+        return try XMLDoc(html: html)!
     }
     
 }

@@ -18,17 +18,17 @@ public class XMLDoc: XMLXPath {
         return root.raw
     }
     
-    public convenience init(xml: String) throws {
+    public convenience init?(xml: String) throws {
         try self.init(data: xml, isXML: true)
     }
     
-    public convenience init(html: String) throws {
+    public convenience init?(html: String) throws {
         try self.init(data: html, isXML: false)
     }
     
-    public init(data: String, isXML: Bool) throws {
+    public init?(data: String, isXML: Bool) throws {
     
-        guard !data.isEmpty else { throw XMLError.Empty }
+        guard !data.isEmpty else { return nil }
         
         let bytes = data.cString(using: .utf8)
         let length = CInt(data.lengthOfBytes(using: .utf8))
@@ -39,12 +39,12 @@ public class XMLDoc: XMLXPath {
         
         docPtr = function(bytes, length, "", encoding, options)
         if docPtr == nil {
-            throw XMLError.Parse
+            return nil
         }
        
         pathCtx = xmlXPathNewContext(docPtr)
         if pathCtx == nil {
-            throw XMLError.Parse
+            return nil
         }
         
     }
@@ -55,10 +55,10 @@ public class XMLDoc: XMLXPath {
     
     public func query(xpath: String) throws -> [XMLElement] {
         
-        guard let xPathObj = xmlXPathEvalExpression(xpath.xmlChars, pathCtx) else { throw XMLError.Parse }
+        guard let xPathObj = xmlXPathEvalExpression(xpath.xmlChars, pathCtx) else { return [] }
         defer { xmlXPathFreeObject(xPathObj) }
         
-        guard let nodes = xPathObj.pointee.nodesetval else { throw XMLError.Parse }
+        guard let nodes = xPathObj.pointee.nodesetval else { return [] }
         
         let nodePtrs = UnsafeBufferPointer(start: nodes.pointee.nodeTab, count: Int(nodes.pointee.nodeNr))
         let xnodes = nodePtrs.flatMap { XMLElement.init(doc: self, parent: nil, nodePtr: $0) }
