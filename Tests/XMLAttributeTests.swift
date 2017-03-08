@@ -29,17 +29,34 @@ class XMLAttributeTests: XMLBaseTest {
         
     }
 
-//    func testUpdateAttributeName() {
-//        
-//        let doc = try XMLDocument(html: testHTML)
-//        
-//        let firstPara = try doc?.queryFirst(xpath: "//*[@id='first']")
-//        XCTAssertNotNil(firstPara)
-//        
-//    }
-//    
-//    func testUpdateAttributeContent() {
-//        
-//    }
+    func testRemoveAttribute() throws {
+        
+        let doc = try XMLDocument(html: testHTML)
+        
+        let firstPara = try doc?.queryFirst(xpath: "//*[@id='first']")
+        XCTAssertNotNil(firstPara)
+        
+        let firstAttr = firstPara!.attributes["id"]
+        try firstPara!.attributes.remove(firstAttr!)
+
+        let notFoundAttr = try doc?.queryFirst(xpath: "//*[@id='first']")
+        XCTAssertNil(notFoundAttr)
+        
+    }
+    
+    func testUpdateAttributeContent() throws {
+        
+        let doc = try XMLDocument(html: testHTML)
+        
+        let firstPara = try doc?.queryFirst(xpath: "//*[@id='first']")
+        XCTAssertNotNil(firstPara)
+        
+        firstPara!.attributes["id"]?.content = "newContent"
+        XCTAssertEqual("newContent", firstPara!.attributes["id"]?.content)
+        
+        let xpathLookup = try doc?.queryFirst(xpath: "//*[@id='newContent']")
+        XCTAssertNotNil(xpathLookup)
+        
+    }
     
 }

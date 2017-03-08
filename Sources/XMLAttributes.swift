@@ -77,4 +77,8 @@ public class XMLAttributes: Collection {
         return nil
     }
     
+    public func remove(_ attribute: XMLAttribute) throws {
+        try attribute.remove()
+    }
+    
 }

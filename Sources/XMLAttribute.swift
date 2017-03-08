@@ -21,23 +21,37 @@ public class XMLAttribute {
     }
 
     public var name: String? {
-        if let name = attrPtr.pointee.name {
-            return String(cString: name)
+        get {
+            if let name = attrPtr.pointee.name {
+                return String(cString: name)
+            }
+            return nil
         }
-        return nil
     }
     
     public var content: String? {
-        if let name = attrPtr.pointee.name {
-            let prop = xmlGetProp(parent.nodePtr, name)
-            defer { xmlFree(prop) }
-            if prop != nil {
-                return String(cString: prop!)
+        get {
+            if let name = attrPtr.pointee.name {
+                let prop = xmlGetProp(parent.nodePtr, name)
+                defer { xmlFree(prop) }
+                if prop != nil {
+                    return String(cString: prop!)
+                }
             }
+            return nil
         }
-        return nil
+        set {
+            if let name = name?.xmlChars, let newContent = newValue?.xmlChars {
+                attrPtr = xmlSetProp(parent.nodePtr, name, newContent)
+            }
+            
+        }
     }
 
+    public func remove() throws {
+        xmlRemoveProp(attrPtr)
+    }
+    
     public var next: XMLAttribute? {
         if let nextSibling = attrPtr.pointee.next {
             return XMLAttribute(parent: parent, attrPtr: nextSibling)
