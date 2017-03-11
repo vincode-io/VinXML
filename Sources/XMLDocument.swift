@@ -12,7 +12,6 @@ import libxml2
 public class XMLDocument: XMLXPath {
     
     var docPtr: xmlDocPtr!
-    var pathCtx: xmlXPathContextPtr!
     
     public var raw: String? {
         return root.raw
@@ -41,11 +40,6 @@ public class XMLDocument: XMLXPath {
         if docPtr == nil {
             return nil
         }
-       
-        pathCtx = xmlXPathNewContext(docPtr)
-        if pathCtx == nil {
-            return nil
-        }
         
     }
     
@@ -54,6 +48,9 @@ public class XMLDocument: XMLXPath {
     }
     
     public func query(xpath: String) throws -> [XMLElement] {
+        
+        guard let pathCtx = xmlXPathNewContext(docPtr) else { return [] }
+        defer { xmlXPathFreeContext(pathCtx) }
         
         guard let xPathObj = xmlXPathEvalExpression(xpath.xmlChars, pathCtx) else { return [] }
         defer { xmlXPathFreeObject(xPathObj) }
@@ -73,7 +70,6 @@ public class XMLDocument: XMLXPath {
     
     deinit {
         xmlFreeDoc(docPtr)
-        xmlXPathFreeContext(pathCtx)
     }
     
 }
