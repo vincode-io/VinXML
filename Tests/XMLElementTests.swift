@@ -54,27 +54,5 @@ class XMLElementTests: XMLBaseTest {
         XCTAssertEqual(3, spans?.count)
         
     }
-    
-//    func testRemoveByXpath() throws {
-//        
-//        let doc = try XMLDoc(html: testHTML)
-//
-//        var docDivs = try doc.query(xpath: "//*/div")
-//        XCTAssertEqual(6, docDivs.count)
-//        
-//        let thirdPara = try doc.queryFirst(xpath: "//*[@id='third']")
-//        var thirdParaDivs = try thirdPara!.query(xpath: "./div")
-//        XCTAssertEqual(3, thirdParaDivs.count)
-//        
-//        try thirdPara!.remove(xpath: "//*[@id='p3div3']")
-//        
-//        thirdParaDivs = try thirdPara!.query(xpath: "div")
-//        XCTAssertEqual(2, thirdParaDivs.count)
-//
-//        docDivs = try doc.query(xpath: "//*/div")
-//        XCTAssertEqual(5, docDivs.count)
-//        
-//        
-//    }
 
 }
