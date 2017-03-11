@@ -9,7 +9,7 @@
 import Foundation
 import libxml2
 
-public class XMLElement: XMLNode, XMLVisitorHost {
+public class XMLElement: XMLXPath, XMLNode, XMLVisitorHost {
 
     weak var doc: XMLDocument?
     weak var parent: XMLElement?
@@ -62,25 +62,27 @@ public class XMLElement: XMLNode, XMLVisitorHost {
     public lazy var attributes: XMLAttributes = XMLAttributes(parent: self)
     public lazy var type: XMLElementType = XMLElementType(rawValue: Int(self.nodePtr.pointee.type.rawValue))!
    
-//    public func query(xpath: String) throws -> [XMLElement] {
-//        
-//        guard let xPathObj = xmlXPathNodeEval(nodePtr, xpath.xmlChars, pathCtx) else { throw XMLError.Parse }
-//        defer { xmlXPathFreeObject(xPathObj) }
-//        
-//        guard let nodes = xPathObj.pointee.nodesetval else { throw XMLError.Parse }
-//        
-//        let nodePtrs = UnsafeBufferPointer(start: nodes.pointee.nodeTab, count: Int(nodes.pointee.nodeNr))
-//        let xnodes = nodePtrs.flatMap { XMLElement.init(docPtr: docPtr, pathCtx: pathCtx, nodePtr: $0) }
-//        
-//        return xnodes
-//
-//    
-//    }
-    
     public init(doc: XMLDocument?, parent: XMLElement?, nodePtr: xmlNodePtr!) {
         self.doc = doc
         self.parent = parent
         self.nodePtr = nodePtr
+    }
+    
+    public func query(xpath: String) throws -> [XMLElement] {
+        
+        guard let pathCtx = xmlXPathNewContext(doc?.docPtr) else { return [] }
+        defer { xmlXPathFreeContext(pathCtx) }
+        
+        guard let xPathObj = xmlXPathNodeEval(nodePtr, xpath.xmlChars, pathCtx) else { return [] }
+        defer { xmlXPathFreeObject(xPathObj) }
+        
+        guard let nodes = xPathObj.pointee.nodesetval else { return [] }
+        
+        let nodePtrs = UnsafeBufferPointer(start: nodes.pointee.nodeTab, count: Int(nodes.pointee.nodeNr))
+        let xnodes = nodePtrs.flatMap { XMLElement.init(doc: doc, parent: nil, nodePtr: $0) }
+        
+        return xnodes
+        
     }
     
     public func remove() throws {

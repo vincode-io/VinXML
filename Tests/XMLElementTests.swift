@@ -16,16 +16,16 @@ class XMLElementTests: XMLBaseTest {
         
         let doc = try XMLDocument(html: testHTML)
         
-        var docDivs = try doc?.query(xpath: "//*/div")
-        XCTAssertEqual(6, docDivs?.count)
+        var spans = try doc?.query(xpath: "//*/span")
+        XCTAssertEqual(6, spans?.count)
         
-        docDivs?[3].name = "span"
+        spans?[3].name = "em"
         
-        docDivs = try doc?.query(xpath: "//*/div")
-        XCTAssertEqual(5, docDivs?.count)
+        spans = try doc?.query(xpath: "//*/span")
+        XCTAssertEqual(5, spans?.count)
         
-        let spanDivs = try doc?.query(xpath: "//*/span")
-        XCTAssertEqual(1, spanDivs?.count)
+        let ems = try doc?.query(xpath: "//*/em")
+        XCTAssertEqual(1, ems?.count)
         
     }
     
@@ -35,11 +35,24 @@ class XMLElementTests: XMLBaseTest {
         let firstPara = try doc?.queryFirst(xpath: "//*[@id='first']")
         
         var nextElement = firstPara!.nextSibling()
-        XCTAssertEqual("p1div1", nextElement!.attributes["id"]!.content)
+        XCTAssertEqual("second", nextElement!.attributes["id"]!.content)
         
         nextElement = nextElement!.nextSibling()
-        XCTAssertEqual("p1div2", nextElement!.attributes["id"]!.content)
+        XCTAssertEqual("third", nextElement!.attributes["id"]!.content)
     
+    }
+    
+    func testSearches() throws {
+    
+        let doc = try XMLDocument(html: testHTML)
+        let thirdPara = try doc?.queryFirst(xpath: "//*[@id='third']")
+        
+        let filterSpans = thirdPara?.children(forName: "span")
+        XCTAssertEqual(3, filterSpans?.count)
+        
+        let spans = try thirdPara?.query(xpath: ".//span")
+        XCTAssertEqual(3, spans?.count)
+        
     }
     
 //    func testRemoveByXpath() throws {
