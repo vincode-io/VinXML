@@ -9,7 +9,7 @@
 import Foundation
 import libxml2
 
-public class XMLElement: XMLXPath, XMLNode, XMLVisitorHost {
+public class XMLElement: XMLXPath, XMLVisitorHost {
 
     weak var doc: XMLDocument?
     weak var parent: XMLElement?

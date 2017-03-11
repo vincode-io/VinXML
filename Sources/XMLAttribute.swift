@@ -9,7 +9,6 @@
 import Foundation
 import libxml2
 
-//public class XMLAttribute: XMLNode {
 public class XMLAttribute {
     
     var parent: XMLElement

@@ -15,7 +15,6 @@
 		519F63611E6D0DFA0074528A /* XMLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63541E6D0DFA0074528A /* XMLElement.swift */; };
 		519F63621E6D0DFA0074528A /* XMLElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63551E6D0DFA0074528A /* XMLElements.swift */; };
 		519F63631E6D0DFA0074528A /* XMLElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63561E6D0DFA0074528A /* XMLElementType.swift */; };
-		519F63661E6D0DFA0074528A /* XMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F63591E6D0DFA0074528A /* XMLNode.swift */; };
 		519F63671E6D0DFA0074528A /* XMLVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F635A1E6D0DFA0074528A /* XMLVisitor.swift */; };
 		519F63681E6D0DFA0074528A /* XMLVisitorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F635B1E6D0DFA0074528A /* XMLVisitorHost.swift */; };
 		519F63691E6D0DFA0074528A /* XMLXPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F635C1E6D0DFA0074528A /* XMLXPath.swift */; };
@@ -62,7 +61,6 @@
 		519F63541E6D0DFA0074528A /* XMLElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLElement.swift; sourceTree = "<group>"; };
 		519F63551E6D0DFA0074528A /* XMLElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLElements.swift; sourceTree = "<group>"; };
 		519F63561E6D0DFA0074528A /* XMLElementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLElementType.swift; sourceTree = "<group>"; };
-		519F63591E6D0DFA0074528A /* XMLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLNode.swift; sourceTree = "<group>"; };
 		519F635A1E6D0DFA0074528A /* XMLVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLVisitor.swift; sourceTree = "<group>"; };
 		519F635B1E6D0DFA0074528A /* XMLVisitorHost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLVisitorHost.swift; sourceTree = "<group>"; };
 		519F635C1E6D0DFA0074528A /* XMLXPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLXPath.swift; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 				519F63541E6D0DFA0074528A /* XMLElement.swift */,
 				519F63551E6D0DFA0074528A /* XMLElements.swift */,
 				519F63561E6D0DFA0074528A /* XMLElementType.swift */,
-				519F63591E6D0DFA0074528A /* XMLNode.swift */,
 				519F635A1E6D0DFA0074528A /* XMLVisitor.swift */,
 				519F635B1E6D0DFA0074528A /* XMLVisitorHost.swift */,
 				519F635C1E6D0DFA0074528A /* XMLXPath.swift */,
@@ -234,7 +231,6 @@
 				519F63691E6D0DFA0074528A /* XMLXPath.swift in Sources */,
 				519F63611E6D0DFA0074528A /* XMLElement.swift in Sources */,
 				519F63671E6D0DFA0074528A /* XMLVisitor.swift in Sources */,
-				519F63661E6D0DFA0074528A /* XMLNode.swift in Sources */,
 				519F63681E6D0DFA0074528A /* XMLVisitorHost.swift in Sources */,
 				519F63601E6D0DFA0074528A /* XMLDocument.swift in Sources */,
 				519F63621E6D0DFA0074528A /* XMLElements.swift in Sources */,
