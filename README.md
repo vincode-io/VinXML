@@ -3,6 +3,10 @@ This is a Swift wrapper for libxml2 (http://xmlsoft.org).  It was created to sup
 iOS application Book It.  Although VinXML isn't a complete wrapper for libxml2, the functionality
 it provides is production quality and is used in an iOS app in the App Store.
 
+Currently most of the libxml2 functionality exposed is for parsing and traversing an HTML or XML
+document.  There is functionality for modifying content, but creating a full XML document from
+scratch isn't currently supported.
+
 ## Status
 VinXML is a useful library as it is, but doesn't fully support all of libxml2's functionality.  I 
 am open to adding more functionality for a popularly requested feature.  I also will consider adding
