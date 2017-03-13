@@ -12,6 +12,10 @@ public class XMLElements: Sequence {
     
     var root: XMLElement?
 
+    public init(root: XMLElement?) {
+        self.root = root
+    }
+    
     public init(doc: XMLDocument?, parent: XMLElement?) {
         guard let firstChildNodePtr = parent?.nodePtr.pointee.children else { return }
         self.root = XMLElement(doc: doc, parent: parent, nodePtr: firstChildNodePtr)

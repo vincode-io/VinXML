@@ -11,8 +11,8 @@ import libxml2
 
 public class XMLElement: XMLXPath, XMLVisitorHost {
 
-    weak var doc: XMLDocument?
-    weak var parent: XMLElement?
+    public weak var doc: XMLDocument?
+    public weak var parent: XMLElement?
     var nodePtr: xmlNodePtr!
     
     public var name: String? {
@@ -58,6 +58,7 @@ public class XMLElement: XMLXPath, XMLVisitorHost {
         }
     }
     
+    public lazy var siblings: XMLElements = XMLElements(root: self)
     public lazy var children: XMLElements = XMLElements(doc: self.doc, parent: self)
     public lazy var attributes: XMLAttributes = XMLAttributes(parent: self)
     public lazy var type: XMLElementType = XMLElementType(rawValue: Int(self.nodePtr.pointee.type.rawValue))!
