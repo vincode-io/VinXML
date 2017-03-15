@@ -14,7 +14,7 @@ public class XMLDocument: XMLXPath {
     var docPtr: xmlDocPtr!
     
     public var raw: String? {
-        return root.raw
+        return root?.raw
     }
     
     public convenience init?(xml: String) throws {
@@ -43,7 +43,7 @@ public class XMLDocument: XMLXPath {
         
     }
     
-    public var root: XMLElement {
+    public var root: XMLElement? {
         return XMLElement.init(doc: self, parent: nil, nodePtr: xmlDocGetRootElement(docPtr))
     }
     

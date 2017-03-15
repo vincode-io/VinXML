@@ -63,10 +63,13 @@ public class XMLElement: XMLXPath, XMLVisitorHost {
     public lazy var attributes: XMLAttributes = XMLAttributes(parent: self)
     public lazy var type: XMLElementType = XMLElementType(rawValue: Int(self.nodePtr.pointee.type.rawValue))!
    
-    public init(doc: XMLDocument?, parent: XMLElement?, nodePtr: xmlNodePtr!) {
+    public init?(doc: XMLDocument?, parent: XMLElement?, nodePtr: xmlNodePtr!) {
         self.doc = doc
         self.parent = parent
         self.nodePtr = nodePtr
+        if nodePtr == nil || nodePtr.pointee == nil {
+            return nil
+        }
     }
     
     public func query(xpath: String) throws -> [XMLElement] {
