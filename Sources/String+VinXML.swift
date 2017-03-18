@@ -13,7 +13,7 @@ extension String {
         }
     }
     
-    func trim() -> String? {
+    func trimmed() -> String? {
         let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed.characters.count < 1 {
             return nil
@@ -25,7 +25,7 @@ extension String {
         let result = components(separatedBy: .whitespacesAndNewlines)
             .filter({ return $0.characters.count > 0 })
             .joined(separator: " ")
-        return result.trim()
+        return result.trimmed()
     }
     
 }
