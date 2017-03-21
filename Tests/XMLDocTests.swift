@@ -20,7 +20,7 @@ class XMLDocTests: XMLBaseTest {
             let root = doc.root
             XCTAssertNotNil(root)
             
-            let head = root.firstChild(forName: "head")
+            let head = root?.firstChild(forName: "head")
             XCTAssertNotNil(head)
             XCTAssertEqual(head!.type, XMLElementType.ElementNode)
             
