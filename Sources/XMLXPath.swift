@@ -1,20 +1,17 @@
 //
 //  XMLXPath.swift
-//  VinFoundation
+//  VinXML
 //
 //  Created by Maurice Parker on 2/10/17.
 //  Copyright © 2017 Vineyard Enterprise Software, Inc. All rights reserved.
 //
 
-import Foundation
 import libxml2
 
 protocol XMLXPath {
-
     func query(xpath: String) throws -> [XMLElement]
     func queryFirst(xpath: String) throws -> XMLElement?
     func remove(xpath: String) throws
-
 }
 
 extension XMLXPath {

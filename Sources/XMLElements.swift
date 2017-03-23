@@ -1,12 +1,10 @@
 //
 //  XMLElements.swift
-//  VinFoundation
+//  VinXML
 //
 //  Created by Maurice Parker on 3/4/17.
 //  Copyright © 2017 Vineyard Enterprise Software, Inc. All rights reserved.
 //
-
-import Foundation
 
 public class XMLElements: Sequence {
     

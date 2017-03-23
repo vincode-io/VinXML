@@ -1,12 +1,11 @@
 //
 //  XMLAttribute.swift
-//  VinFoundation
+//  VinXML
 //
 //  Created by Maurice Parker on 1/31/17.
 //  Copyright © 2017 Vineyard Enterprise Software, Inc. All rights reserved.
 //
 
-import Foundation
 import libxml2
 
 public class XMLAttribute {

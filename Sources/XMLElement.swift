@@ -1,12 +1,11 @@
 //
 //  XMLElement.swift
-//  VinFoundation
+//  VinXML
 //
 //  Created by Maurice Parker on 1/31/17.
 //  Copyright © 2017 Vineyard Enterprise Software, Inc. All rights reserved.
 //
 
-import Foundation
 import libxml2
 
 public class XMLElement: XMLXPath, XMLVisitorHost {
@@ -67,7 +66,7 @@ public class XMLElement: XMLXPath, XMLVisitorHost {
         self.doc = doc
         self.parent = parent
         self.nodePtr = nodePtr
-        if nodePtr == nil || nodePtr.pointee == nil {
+        if nodePtr == nil {
             return nil
         }
     }

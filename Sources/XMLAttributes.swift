@@ -1,6 +1,6 @@
 //
 //  XMLAttributes.swift
-//  VinFoundation
+//  VinXML
 //
 //  Created by Maurice Parker on 2/25/17.
 //  Copyright © 2017 Vineyard Enterprise Software, Inc. All rights reserved.

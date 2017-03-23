@@ -1,12 +1,10 @@
 //
 //  XMLElementType.swift
-//  VinFoundation
+//  VinXML
 //
 //  Created by Maurice Parker on 2/16/17.
 //  Copyright © 2017 Vineyard Enterprise Software, Inc. All rights reserved.
 //
-
-import Foundation
 
 public enum XMLElementType: Int {
     case ElementNode = 1
