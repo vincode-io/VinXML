@@ -12,6 +12,7 @@ import libxml2
 public class XMLDocument: XMLXPath {
     
     var docPtr: xmlDocPtr!
+    var pathCtxPtr: xmlXPathContextPtr!
     
     public var raw: String? {
         return root?.raw
@@ -40,19 +41,22 @@ public class XMLDocument: XMLXPath {
         if docPtr == nil {
             return nil
         }
-        
+
+        pathCtxPtr = xmlXPathNewContext(docPtr)
+
     }
     
     public var root: XMLElement? {
         return XMLElement.init(doc: self, parent: nil, nodePtr: xmlDocGetRootElement(docPtr))
     }
     
+    public func registerXPathNamespace(prefix: String, url: String) {
+        xmlXPathRegisterNs(pathCtxPtr, prefix.xmlChars, url.xmlChars)
+    }
+    
     public func query(xpath: String) throws -> [XMLElement] {
         
-        guard let pathCtx = xmlXPathNewContext(docPtr) else { return [] }
-        defer { xmlXPathFreeContext(pathCtx) }
-        
-        guard let xPathObj = xmlXPathEvalExpression(xpath.xmlChars, pathCtx) else { return [] }
+        guard let xPathObj = xmlXPathEvalExpression(xpath.xmlChars, pathCtxPtr) else { return [] }
         defer { xmlXPathFreeObject(xPathObj) }
         
         guard let nodes = xPathObj.pointee.nodesetval else { return [] }
@@ -70,6 +74,7 @@ public class XMLDocument: XMLXPath {
     
     deinit {
         xmlFreeDoc(docPtr)
+        xmlXPathFreeContext(pathCtxPtr)
     }
     
 }

@@ -73,10 +73,7 @@ public class XMLElement: XMLXPath, XMLVisitorHost {
     
     public func query(xpath: String) throws -> [XMLElement] {
         
-        guard let pathCtx = xmlXPathNewContext(doc?.docPtr) else { return [] }
-        defer { xmlXPathFreeContext(pathCtx) }
-        
-        guard let xPathObj = xmlXPathNodeEval(nodePtr, xpath.xmlChars, pathCtx) else { return [] }
+        guard let xPathObj = xmlXPathNodeEval(nodePtr, xpath.xmlChars, doc?.pathCtxPtr) else { return [] }
         defer { xmlXPathFreeObject(xPathObj) }
         
         guard let nodes = xPathObj.pointee.nodesetval else { return [] }
