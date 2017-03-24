@@ -197,6 +197,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
+				ORGANIZATIONNAME = Vincode;
 				TargetAttributes = {
 					OBJ_16 = {
 						LastSwiftMigration = 0820;

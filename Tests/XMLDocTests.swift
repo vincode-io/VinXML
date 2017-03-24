@@ -3,7 +3,7 @@
 //  VinFoundation
 //
 //  Created by Maurice Parker on 2/4/17.
-//  Copyright © 2017 Vineyard Enterprise Software, Inc. All rights reserved.
+//  Copyright © 2017 Vincode. All rights reserved.
 //
 
 import XCTest
