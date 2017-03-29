@@ -45,11 +45,8 @@ public class XMLElement: XMLXPath, XMLVisitorHost {
     }
     
     public var raw: String? {
-        guard let nodePtr = nodePtr else {
-            return nil
-        }
         if let buffer = xmlBufferCreate() {
-            xmlNodeDump(buffer, nodePtr.pointee.doc, nodePtr, 0, 0)
+            xmlNodeDump(buffer, doc!.docPtr, nodePtr, 0, 0)
             defer { xmlBufferFree(buffer) }
             return String(cString: buffer.pointee.content)
         } else {
