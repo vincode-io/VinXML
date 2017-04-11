@@ -21,11 +21,4 @@ extension String {
         return trimmed
     }
     
-    func trimDownAllWhitespaces() -> String? {
-        let result = components(separatedBy: .whitespacesAndNewlines)
-            .filter({ return $0.characters.count > 0 })
-            .joined(separator: " ")
-        return result.trimmed()
-    }
-    
 }

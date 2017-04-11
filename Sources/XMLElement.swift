@@ -34,7 +34,7 @@ public class XMLElement: XMLXPath, XMLVisitorHost {
         let content = xmlNodeGetContent(nodePtr)
         defer { xmlFree(content) }
         if content != nil {
-            return String(cString: content!).trimDownAllWhitespaces()
+            return String(cString: content!).trimmed()
         } else {
             return nil
         }
