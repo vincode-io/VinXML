@@ -8,7 +8,7 @@
 
 import libxml2
 
-public class XMLElement: XMLXPath, XMLVisitorHost {
+public class XMLElement: XMLXPath, XMLVisitorHost, Equatable {
 
     public weak var doc: XMLDocument?
     public weak var parent: XMLElement?
@@ -111,7 +111,10 @@ public class XMLElement: XMLXPath, XMLVisitorHost {
         }
         return nil
     }
-
+    
+    static public func == (lhs: XMLElement, rhs: XMLElement) -> Bool {
+        return lhs.nodePtr == rhs.nodePtr
+    }
     
     // MARK: Visitor
     public func host(visitor: XMLVisitor) throws {

@@ -55,4 +55,12 @@ class XMLElementTests: XMLBaseTest {
         
     }
 
+    func testEquatable() throws {
+        
+        let doc = try XMLDocument(html: testHTML)
+        let firstFirst = try doc?.queryFirst(xpath: "//*[@id='first']")
+        let secondFirst = try doc?.queryFirst(xpath: "//*[@id='first']")
+        XCTAssertEqual(firstFirst, secondFirst)
+        
+    }
 }
