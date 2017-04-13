@@ -40,8 +40,22 @@ public class XMLElement: XMLXPath, XMLVisitorHost, Equatable {
         }
     }
     
+    public var text: String? {
+        let text = xmlNodeListGetString(doc?.docPtr, nodePtr.pointee.children, 1)
+        defer { xmlFree(text) }
+        if text != nil {
+            return String(cString: text!).trimmed()
+        } else {
+            return nil
+        }
+    }
+    
     public var hasContent: Bool {
         return content != nil
+    }
+    
+    public var hasText: Bool {
+        return text != nil
     }
     
     public var raw: String? {
