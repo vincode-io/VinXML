@@ -19,12 +19,30 @@ public class XMLElements: Sequence {
         self.root = XMLElement(doc: doc, parent: parent, nodePtr: firstChildNodePtr)
     }
     
-    var isEmpty: Bool {
+    public var isEmpty: Bool {
         return root == nil
     }
     
-    var first: XMLElement? {
+    public var first: XMLElement? {
         return root
+    }
+    
+    public func index(of findElement: XMLElement) -> Int? {
+        for (i, element) in self.enumerated() {
+            if findElement == element {
+                return i
+            }
+        }
+        return nil
+    }
+    
+    public subscript(index: Int) -> XMLElement? {
+        for (i, element) in self.enumerated() {
+            if i == index {
+                return element
+            }
+        }
+        return nil
     }
     
     public func makeIterator() -> AnyIterator<XMLElement> {

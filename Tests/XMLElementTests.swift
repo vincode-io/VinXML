@@ -63,4 +63,15 @@ class XMLElementTests: XMLBaseTest {
         XCTAssertEqual(firstFirst, secondFirst)
         
     }
+    
+    func testIndexOf() throws {
+        
+        let doc = try XMLDocument(html: testHTML)
+        let first = try doc?.queryFirst(xpath: "//*[@id='first']")
+        let secondFirst = first!.children[1]
+        let secondFirstIndex = first!.children.index(of: secondFirst!)
+        XCTAssertEqual(1, secondFirstIndex)
+        
+    }
+    
 }
