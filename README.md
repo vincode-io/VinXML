@@ -1,7 +1,8 @@
 # VinXML
 This is a Swift wrapper for libxml2 (http://xmlsoft.org).  It was created to support the
-iOS application Book It.  Although VinXML isn't a complete wrapper for libxml2, the functionality
-it provides is production quality and is used in an iOS app in the App Store.
+iOS application Bind It.  Although VinXML isn't a complete wrapper for libxml2, the functionality
+it provides is production quality and is used in an iOS app in the App Store.  It is useful for
+processing a non-normalized HTML document as a normalized XML document.
 
 Currently most of the libxml2 functionality exposed is for parsing and traversing an HTML or XML
 document.  There is functionality for modifying content, but creating a full XML document from
