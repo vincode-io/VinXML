@@ -19,10 +19,3 @@ we will ever try to simulate them due to hwo libxml2's API works.  It frankly, j
 seem to be worth the effort to do something like Apple does with the stdlib for such an
 edge case library like VinXML.
 
-## Install
-
-### Cocoapods
-
-### Carthage
-
-### Swift Package Manager
