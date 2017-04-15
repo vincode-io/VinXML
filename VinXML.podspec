@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name						= "VinXML"
-  s.version						= "0.0.1"
+  s.version						= "0.0.2"
   s.summary						= "Swift bindings for libxml2"
   s.homepage					= "https://github.com/vincode-io/VinXML"
   s.license						= "MIT"
@@ -12,4 +12,8 @@ Pod::Spec.new do |s|
   s.source_files				= "Sources/**/*.swift"
   s.requires_arc				= true
   s.module_name					= "VinXML"
+  s.xcconfig      = {
+                      'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'
+                    }
+
 end
