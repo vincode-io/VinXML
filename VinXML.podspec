@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.source_files				= "Sources/**/*.swift"
   s.requires_arc				= true
   s.module_name					= "VinXML"
+  s.library = 'xml2'
   s.xcconfig      = {
                       'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'
                     }
