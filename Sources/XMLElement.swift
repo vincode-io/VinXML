@@ -98,7 +98,7 @@ public class XMLElement: XMLXPath, XMLVisitorHost, Equatable {
     
     public func remove() throws {
         xmlUnlinkNode(nodePtr)
-        xmlFreeNode(nodePtr!)
+        xmlFreeNode(nodePtr)
     }
 
     //MARK: Useful traversal functions.
