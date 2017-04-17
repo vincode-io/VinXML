@@ -17,6 +17,11 @@ public class XMLAttribute {
         self.parent = parent
         self.attrPtr = attrPtr
     }
+    
+    init(parent: XMLElement, name: String, content: String) {
+        self.parent = parent
+        self.attrPtr = xmlSetProp(parent.nodePtr, name.xmlChars, content.xmlChars)
+    }
 
     public var name: String? {
         get {

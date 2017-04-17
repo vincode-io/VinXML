@@ -11,8 +11,7 @@ import XCTest
 
 class XMLElementTests: XMLBaseTest {
     
-
-    func testRenameNode() throws {
+   func testRenameNode() throws {
         
         let doc = try XMLDocument(html: testHTML)
         

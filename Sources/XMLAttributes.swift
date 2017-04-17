@@ -62,11 +62,22 @@ public class XMLAttributes: Collection {
     
     public subscript(index: String) -> XMLAttribute? {
 
-        if let attrPtr = xmlHasProp(parent.nodePtr, index.xmlChars) {
-            return XMLAttribute(parent: parent, attrPtr: attrPtr)
+        get {
+            if let attrPtr = xmlHasProp(parent.nodePtr, index.xmlChars) {
+                return XMLAttribute(parent: parent, attrPtr: attrPtr)
+            }
+            return nil
         }
         
-        return nil
+        set(newValue) {
+            if newValue == nil || newValue?.content == nil {
+                if let attrPtr = xmlHasProp(parent.nodePtr, index.xmlChars) {
+                    xmlRemoveProp(attrPtr)
+                }
+            } else {
+                xmlSetProp(parent.nodePtr, index.xmlChars, newValue?.content?.xmlChars)
+            }
+        }
         
     }
     
