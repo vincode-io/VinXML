@@ -60,7 +60,7 @@ public class XMLElement: XMLXPath, XMLVisitorHost, Equatable {
     
     public var raw: String? {
         if let buffer = xmlBufferCreate() {
-            xmlNodeDump(buffer, doc!.docPtr, nodePtr, 0, 0)
+            xmlNodeDump(buffer, doc!.docPtr, nodePtr, 0, 1)
             defer { xmlBufferFree(buffer) }
             return String(cString: buffer.pointee.content)
         } else {
@@ -98,7 +98,6 @@ public class XMLElement: XMLXPath, XMLVisitorHost, Equatable {
     
     public func remove() throws {
         xmlUnlinkNode(nodePtr)
-        xmlFreeNode(nodePtr)
     }
 
     //MARK: Useful traversal functions.
