@@ -34,10 +34,10 @@ class XMLElementTests: XMLBaseTest {
         let firstPara = try doc?.queryFirst(xpath: "//*[@id='first']")
         
         var nextElement = firstPara!.nextSibling()
-        XCTAssertEqual("second", nextElement!.attributes["id"]!.content)
+        XCTAssertEqual("second", nextElement!.attributes["id"])
         
         nextElement = nextElement!.nextSibling()
-        XCTAssertEqual("third", nextElement!.attributes["id"]!.content)
+        XCTAssertEqual("third", nextElement!.attributes["id"])
     
     }
     

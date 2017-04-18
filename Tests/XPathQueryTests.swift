@@ -42,7 +42,7 @@ class XPathQueryTests: XMLBaseTest {
             let contentAttr = element?.attributes["content"]
             XCTAssertNotNil(contentAttr)
 
-            XCTAssertEqual(contentAttr?.content, "Mobile and Web Development")
+            XCTAssertEqual(contentAttr, "Mobile and Web Development")
             
         } catch {
             XCTFail("\(error)")

@@ -18,8 +18,9 @@ public class XMLAttributes: Collection {
     public var startIndex: String {
       
         if let firstAttr = parent.nodePtr.pointee.properties {
-            let attribute = XMLAttribute(parent: parent, attrPtr: firstAttr)
-            return attribute.name ?? String()
+            if let name = firstAttr.pointee.name {
+                return String(cString: name)
+            }
         }
         
         return String()
@@ -34,12 +35,11 @@ public class XMLAttributes: Collection {
             curAttr = curAttr!.pointee.next
         }
         
-        guard lastAttr != nil else {
-            return String()
+        if let name = lastAttr?.pointee.name {
+            return String(cString: name)
         }
         
-        let attribute = XMLAttribute(parent: parent, attrPtr: lastAttr!)
-        return attribute.name ?? String()
+        return String()
         
     }
     
@@ -54,42 +54,40 @@ public class XMLAttributes: Collection {
     }
     
     public func index(after i: String) -> String {
-        if let current = self[i] {
-            return (current.next?.name ?? String())
+        
+        if let currentAttrPtr = xmlHasProp(parent.nodePtr, i.xmlChars) {
+            if let nextAttrPtr = currentAttrPtr.pointee.next {
+                if let name = nextAttrPtr.pointee.name {
+                    return String(cString: name)
+                }
+            }
         }
+        
         return String()
+        
     }
     
-    public subscript(index: String) -> XMLAttribute? {
+    public subscript(index: String) -> String? {
 
         get {
-            if let attrPtr = xmlHasProp(parent.nodePtr, index.xmlChars) {
-                return XMLAttribute(parent: parent, attrPtr: attrPtr)
+            let prop = xmlGetProp(parent.nodePtr, index.xmlChars)
+            defer { xmlFree(prop) }
+            if prop != nil {
+                return String(cString: prop!)
             }
             return nil
         }
         
         set(newValue) {
-            if newValue == nil || newValue?.content == nil {
+            if newValue == nil {
                 if let attrPtr = xmlHasProp(parent.nodePtr, index.xmlChars) {
                     xmlRemoveProp(attrPtr)
                 }
             } else {
-                xmlSetProp(parent.nodePtr, index.xmlChars, newValue?.content?.xmlChars)
+                xmlSetProp(parent.nodePtr, index.xmlChars, newValue!.xmlChars)
             }
         }
         
-    }
-    
-    public func append(name: String, content: String) -> XMLAttribute? {
-        if let attrPtr = xmlNewProp(parent.nodePtr, name.xmlChars, content.xmlChars) {
-            return XMLAttribute(parent: parent, attrPtr: attrPtr)
-        }
-        return nil
-    }
-    
-    public func remove(_ attribute: XMLAttribute) throws {
-        try attribute.remove()
     }
     
 }
