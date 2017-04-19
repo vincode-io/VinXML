@@ -26,7 +26,7 @@ class XMLDocTests: XMLBaseTest {
             
             let metas = head!.children(forName: "meta")
             XCTAssertNotNil(metas)
-            XCTAssertEqual(metas.count, 14)
+            XCTAssertEqual(metas.count, 12)
             
         } catch {
             XCTFail("\(error)")
