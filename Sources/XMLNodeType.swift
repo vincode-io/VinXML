@@ -1,12 +1,12 @@
 //
-//  XMLElementType.swift
+//  XMLNodeType.swift
 //  VinXML
 //
 //  Created by Maurice Parker on 2/16/17.
 //  Copyright © 2017 Vincode. All rights reserved.
 //
 
-public enum XMLElementType: Int {
+public enum XMLNodeType: Int {
     case ElementNode = 1
     case AttributeNode = 2
     case TextNode = 3

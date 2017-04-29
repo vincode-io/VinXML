@@ -1,51 +1,51 @@
 //
-//  XMLElements.swift
+//  XMLNodes.swift
 //  VinXML
 //
 //  Created by Maurice Parker on 3/4/17.
 //  Copyright © 2017 Vincode. All rights reserved.
 //
 
-public class XMLElements: Sequence {
+public class XMLNodes: Sequence {
     
-    var root: XMLElement?
+    var root: XMLNode?
 
-    public init(root: XMLElement?) {
+    public init(root: XMLNode?) {
         self.root = root
     }
     
-    public init(doc: XMLDocument?, parent: XMLElement?) {
+    public init(doc: XMLDocument?, parent: XMLNode?) {
         guard let firstChildNodePtr = parent?.nodePtr.pointee.children else { return }
-        self.root = XMLElement(doc: doc, parent: parent, nodePtr: firstChildNodePtr)
+        self.root = XMLNode(doc: doc, parent: parent, nodePtr: firstChildNodePtr)
     }
     
     public var isEmpty: Bool {
         return root == nil
     }
     
-    public var first: XMLElement? {
+    public var first: XMLNode? {
         return root
     }
     
-    public func index(of findElement: XMLElement) -> Int? {
-        for (i, element) in self.enumerated() {
-            if findElement == element {
+    public func index(of findElement: XMLNode) -> Int? {
+        for (i, node) in self.enumerated() {
+            if findElement == node {
                 return i
             }
         }
         return nil
     }
     
-    public subscript(index: Int) -> XMLElement? {
-        for (i, element) in self.enumerated() {
+    public subscript(index: Int) -> XMLNode? {
+        for (i, node) in self.enumerated() {
             if i == index {
-                return element
+                return node
             }
         }
         return nil
     }
     
-    public func makeIterator() -> AnyIterator<XMLElement> {
+    public func makeIterator() -> AnyIterator<XMLNode> {
         
         var iteratorCurrent = root
 

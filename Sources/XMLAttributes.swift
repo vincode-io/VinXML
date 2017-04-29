@@ -9,9 +9,9 @@ import libxml2
 
 public class XMLAttributes: Collection {
 
-    unowned var parent: XMLElement
+    unowned var parent: XMLNode
 
-    init(parent: XMLElement) {
+    init(parent: XMLNode) {
         self.parent = parent
     }
 

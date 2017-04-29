@@ -46,15 +46,15 @@ public class XMLDocument: XMLXPath {
 
     }
     
-    public var root: XMLElement? {
-        return XMLElement.init(doc: self, parent: nil, nodePtr: xmlDocGetRootElement(docPtr))
+    public var root: XMLNode? {
+        return XMLNode.init(doc: self, parent: nil, nodePtr: xmlDocGetRootElement(docPtr))
     }
     
     public func registerXPathNamespace(prefix: String, url: String) {
         xmlXPathRegisterNs(pathCtxPtr, prefix.xmlChars, url.xmlChars)
     }
     
-    public func query(xpath: String) throws -> [XMLElement] {
+    public func query(xpath: String) throws -> [XMLNode] {
         
         guard let xPathObj = xmlXPathEvalExpression(xpath.xmlChars, pathCtxPtr) else { return [] }
         defer { xmlXPathFreeObject(xPathObj) }
@@ -62,13 +62,13 @@ public class XMLDocument: XMLXPath {
         guard let nodes = xPathObj.pointee.nodesetval else { return [] }
         
         let nodePtrs = UnsafeBufferPointer(start: nodes.pointee.nodeTab, count: Int(nodes.pointee.nodeNr))
-        let xnodes = nodePtrs.flatMap { XMLElement.init(doc: self, parent: nil, nodePtr: $0) }
+        let xnodes = nodePtrs.flatMap { XMLNode.init(doc: self, parent: nil, nodePtr: $0) }
         
         return xnodes
         
     }
     
-    public func replace(this: XMLElement, withThis: XMLElement) {
+    public func replace(this: XMLNode, withThis: XMLNode) {
         xmlReplaceNode(this.nodePtr, withThis.nodePtr)
     }
     

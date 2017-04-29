@@ -1,5 +1,5 @@
 //
-//  XMLElement.swift
+//  XMLNode.swift
 //  VinXML
 //
 //  Created by Maurice Parker on 1/31/17.
@@ -8,10 +8,10 @@
 
 import libxml2
 
-public class XMLElement: XMLXPath, XMLVisitorHost, Equatable {
+public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
 
     public weak var doc: XMLDocument?
-    public weak var parent: XMLElement?
+    public weak var parent: XMLNode?
     var nodePtr: xmlNodePtr!
     
     public var name: String? {
@@ -68,12 +68,12 @@ public class XMLElement: XMLXPath, XMLVisitorHost, Equatable {
         }
     }
     
-    public lazy var siblings: XMLElements = XMLElements(root: self)
-    public lazy var children: XMLElements = XMLElements(doc: self.doc, parent: self)
+    public lazy var siblings: XMLNodes = XMLNodes(root: self)
+    public lazy var children: XMLNodes = XMLNodes(doc: self.doc, parent: self)
     public lazy var attributes: XMLAttributes = XMLAttributes(parent: self)
-    public lazy var type: XMLElementType = XMLElementType(rawValue: Int(self.nodePtr.pointee.type.rawValue))!
+    public lazy var type: XMLNodeType = XMLNodeType(rawValue: Int(self.nodePtr.pointee.type.rawValue))!
    
-    public init?(doc: XMLDocument?, parent: XMLElement?, nodePtr: xmlNodePtr!) {
+    public init?(doc: XMLDocument?, parent: XMLNode?, nodePtr: xmlNodePtr!) {
         self.doc = doc
         self.parent = parent
         self.nodePtr = nodePtr
@@ -82,7 +82,7 @@ public class XMLElement: XMLXPath, XMLVisitorHost, Equatable {
         }
     }
     
-    public func query(xpath: String) throws -> [XMLElement] {
+    public func query(xpath: String) throws -> [XMLNode] {
         
         guard let xPathObj = xmlXPathNodeEval(nodePtr, xpath.xmlChars, doc?.pathCtxPtr) else { return [] }
         defer { xmlXPathFreeObject(xPathObj) }
@@ -90,7 +90,7 @@ public class XMLElement: XMLXPath, XMLVisitorHost, Equatable {
         guard let nodes = xPathObj.pointee.nodesetval else { return [] }
         
         let nodePtrs = UnsafeBufferPointer(start: nodes.pointee.nodeTab, count: Int(nodes.pointee.nodeNr))
-        let xnodes = nodePtrs.flatMap { XMLElement.init(doc: doc, parent: nil, nodePtr: $0) }
+        let xnodes = nodePtrs.flatMap { XMLNode.init(doc: doc, parent: nil, nodePtr: $0) }
         
         return xnodes
         
@@ -106,34 +106,34 @@ public class XMLElement: XMLXPath, XMLVisitorHost, Equatable {
         return !self.children.isEmpty
     }
     
-    public func children(forName name: String) -> [XMLElement] {
+    public func children(forName name: String) -> [XMLNode] {
         return self.children.filter { $0.name == name }
     }
     
-    public func firstChild() -> XMLElement? {
+    public func firstChild() -> XMLNode? {
         return self.children.first
     }
 
-    public func firstChild(forName name: String) -> XMLElement? {
+    public func firstChild(forName name: String) -> XMLNode? {
         return self.children(forName: name).first
     }
 
-    public func nextSibling() -> XMLElement? {
+    public func nextSibling() -> XMLNode? {
         if let nextNodePtr = xmlNextElementSibling(nodePtr) {
-            return XMLElement.init(doc: doc, parent: parent, nodePtr: nextNodePtr)
+            return XMLNode.init(doc: doc, parent: parent, nodePtr: nextNodePtr)
         }
         return nil
     }
     
-    static public func == (lhs: XMLElement, rhs: XMLElement) -> Bool {
+    static public func == (lhs: XMLNode, rhs: XMLNode) -> Bool {
         return lhs.nodePtr == rhs.nodePtr
     }
     
     // MARK: Visitor
     public func host(visitor: XMLVisitor) throws {
         if try visitor.visit(host: self) {
-            try children.forEach() { element in
-                try element.host(visitor: visitor)
+            try children.forEach() { node in
+                try node.host(visitor: visitor)
             }
         }
     }

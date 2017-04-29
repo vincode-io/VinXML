@@ -9,14 +9,14 @@
 import libxml2
 
 protocol XMLXPath {
-    func query(xpath: String) throws -> [XMLElement]
-    func queryFirst(xpath: String) throws -> XMLElement?
+    func query(xpath: String) throws -> [XMLNode]
+    func queryFirst(xpath: String) throws -> XMLNode?
     func remove(xpath: String) throws
 }
 
 extension XMLXPath {
     
-    public func queryFirst(xpath: String) throws -> XMLElement? {
+    public func queryFirst(xpath: String) throws -> XMLNode? {
         let results = try self.query(xpath: xpath)
         guard results.count > 0 else {
             return nil
@@ -27,8 +27,8 @@ extension XMLXPath {
     public func remove(xpath: String) throws {
         
         let results = try self.query(xpath: xpath)
-        try results.forEach() { xmlElement in
-            try xmlElement.remove()
+        try results.forEach() { node in
+            try node.remove()
         }
         
     }

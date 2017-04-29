@@ -18,10 +18,10 @@ class XPathQueryTests: XMLBaseTest {
             let doc = try loadHTHLDoc()
             
             let xpath = "//*[@class='entry-title']"
-            let element = try doc.queryFirst(xpath: xpath)
-            XCTAssertNotNil(element)
+            let node = try doc.queryFirst(xpath: xpath)
+            XCTAssertNotNil(node)
             
-            XCTAssertEqual(element?.content, "Company")
+            XCTAssertEqual(node?.content, "Company")
             
         } catch {
             XCTFail("\(error)")
@@ -36,10 +36,10 @@ class XPathQueryTests: XMLBaseTest {
             let doc = try loadHTHLDoc()
             
             let xpath = "//*[@property='og:description']"
-            let element = try doc.queryFirst(xpath: xpath)
-            XCTAssertNotNil(element)
+            let node = try doc.queryFirst(xpath: xpath)
+            XCTAssertNotNil(node)
             
-            let contentAttr = element?.attributes["content"]
+            let contentAttr = node?.attributes["content"]
             XCTAssertNotNil(contentAttr)
 
             XCTAssertEqual(contentAttr, "Mobile and Web Development")
