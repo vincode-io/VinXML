@@ -3,7 +3,7 @@
 //  Copyright © 2017 Vincode. All rights reserved.
 //
 
-import libxml2
+import Clibxml2
 
 extension String {
     
