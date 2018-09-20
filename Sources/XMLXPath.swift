@@ -8,7 +8,7 @@
 
 import vinlibxml2
 
-protocol XMLXPath {
+public protocol XMLXPath {
     func query(xpath: String) throws -> [XMLNode]
     func queryFirst(xpath: String) throws -> XMLNode?
     func remove(xpath: String) throws
