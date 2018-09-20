@@ -90,7 +90,7 @@ public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
         guard let nodes = xPathObj.pointee.nodesetval else { return [] }
         
         let nodePtrs = UnsafeBufferPointer(start: nodes.pointee.nodeTab, count: Int(nodes.pointee.nodeNr))
-        let xnodes = nodePtrs.flatMap { XMLNode.init(doc: doc, parent: nil, nodePtr: $0) }
+        let xnodes = nodePtrs.compactMap { XMLNode.init(doc: doc, parent: nil, nodePtr: $0) }
         
         return xnodes
         

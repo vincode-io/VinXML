@@ -15,7 +15,7 @@ extension String {
     
     func trimmed() -> String? {
         let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed.characters.count < 1 {
+        if trimmed.isEmpty {
             return nil
         }
         return trimmed
