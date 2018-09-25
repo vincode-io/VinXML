@@ -108,6 +108,7 @@ public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
     
     public func remove() throws {
         xmlUnlinkNode(nodePtr)
+        xmlFreeNode(nodePtr)
     }
 
     //MARK: Useful traversal functions.
