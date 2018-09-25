@@ -68,6 +68,16 @@ public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
         }
     }
     
+    public var html: String? {
+        if let buffer = xmlBufferCreate() {
+            htmlNodeDump(buffer, doc!.docPtr, nodePtr)
+            defer { xmlBufferFree(buffer) }
+            return String(cString: buffer.pointee.content)
+        } else {
+            return nil
+        }
+    }
+    
     public lazy var siblings: XMLNodes = XMLNodes(root: self)
     public lazy var children: XMLNodes = XMLNodes(doc: self.doc, parent: self)
     public lazy var attributes: XMLAttributes = XMLAttributes(parent: self)
