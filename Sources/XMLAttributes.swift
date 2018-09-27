@@ -43,6 +43,22 @@ public class XMLAttributes: Collection {
         
     }
     
+    public var names: [String] {
+        
+        var names = [String]()
+        
+        var curAttr = parent.nodePtr.pointee.properties
+        while curAttr != nil {
+            if let cString = curAttr?.pointee.name {
+                names.append(String(cString: cString))
+            }
+            curAttr = curAttr!.pointee.next
+        }
+        
+        return names
+        
+    }
+    
     public var count: Int {
         var counter = 0
         var curAttr = parent.nodePtr.pointee.properties
