@@ -1,5 +1,5 @@
 module vinlibxml2 [system] {
-    header "libxml2.h"
+    umbrella header "libxml2.h"
     link "xml2"
     export *
 }
