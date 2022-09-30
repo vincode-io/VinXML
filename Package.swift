@@ -19,6 +19,7 @@ let package = Package(
 			dependencies: ["libxml2"]),
 		.testTarget(
 			name: "VinXMLTests",
-			dependencies: ["VinXML"]),
+			dependencies: ["VinXML"],
+			resources: [.copy("Resources")]),
 	]
 )
