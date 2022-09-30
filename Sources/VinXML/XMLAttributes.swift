@@ -5,7 +5,7 @@
 //  Created by Maurice Parker on 2/25/17.
 //  Copyright © 2017 Vincode. All rights reserved.
 //
-import vinlibxml2
+import libxml2
 
 public class XMLAttributes: Collection {
 

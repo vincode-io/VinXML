@@ -13,10 +13,10 @@ let package = Package(
 			targets: ["VinXML"]),
 	],
 	targets: [
-		.systemLibrary(name: "vinlibxml2", pkgConfig: "vinlibxml2"),
+		.systemLibrary(name: "libxml2", pkgConfig: "libxml2"),
 		.target(
 			name: "VinXML",
-			dependencies: ["vinlibxml2"]),
+			dependencies: ["libxml2"]),
 		.testTarget(
 			name: "VinXMLTests",
 			dependencies: ["VinXML"]),

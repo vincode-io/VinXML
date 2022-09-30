@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import vinlibxml2
+import libxml2
 
 public class XMLDocument: XMLXPath {
     
