@@ -11,10 +11,6 @@ import XCTest
 
 class XMLBaseTest: XCTestCase {
 
-    static var bundle: Bundle {
-        return Bundle(for: XMLBaseTest.self)
-    }
-    
     let testHTML = "<html><head><title>Title</title></head><body>"
         + "<h1>A heading 1 title</h1>"
         + "<p id=\"first\">The first paragraph."
@@ -31,7 +27,7 @@ class XMLBaseTest: XCTestCase {
         + "</body></html>"
     
     func loadHTHLDoc() throws -> VinXML.XMLDocument {
-        let htmlLocation = XMLBaseTest.bundle.url(forResource: "vincode.io", withExtension: "html")
+		let htmlLocation = Bundle.module.url(forResource: "Resources/vincode.io", withExtension: "html")
         guard let html = try? String(contentsOf: htmlLocation!) else {
             fatalError()
         }
