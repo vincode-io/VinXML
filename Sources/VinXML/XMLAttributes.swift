@@ -16,7 +16,6 @@ public class XMLAttributes: Collection {
     }
 
     public var startIndex: String {
-      
         if let firstAttr = parent.nodePtr.pointee.properties {
             if let name = firstAttr.pointee.name {
                 return String(cString: name)
@@ -27,7 +26,6 @@ public class XMLAttributes: Collection {
     }
     
     public var endIndex: String {
-
         var curAttr = parent.nodePtr.pointee.properties
         var lastAttr: xmlAttrPtr?
         while curAttr != nil {
@@ -40,11 +38,9 @@ public class XMLAttributes: Collection {
         }
         
         return String()
-        
     }
     
     public var names: [String] {
-        
         var names = [String]()
         
         var curAttr = parent.nodePtr.pointee.properties
@@ -56,7 +52,6 @@ public class XMLAttributes: Collection {
         }
         
         return names
-        
     }
     
     public var count: Int {

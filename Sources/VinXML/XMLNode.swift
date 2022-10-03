@@ -94,7 +94,6 @@ public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
     }
     
     public func query(xpath: String) throws -> [XMLNode] {
-        
         guard let xPathObj = xmlXPathNodeEval(nodePtr, xpath.xmlChars, doc?.pathCtxPtr) else { return [] }
         defer { xmlXPathFreeObject(xPathObj) }
         
@@ -104,7 +103,6 @@ public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
         let xnodes = nodePtrs.compactMap { XMLNode.init(doc: doc, parent: nil, nodePtr: $0) }
         
         return xnodes
-        
     }
     
     public func remove() throws {

@@ -46,7 +46,6 @@ class XMLNodes: Sequence {
     }
     
     public func makeIterator() -> AnyIterator<XMLNode> {
-        
         var iteratorCurrent = root
 
         return AnyIterator {
@@ -58,7 +57,6 @@ class XMLNodes: Sequence {
             return temp
             
         }
-        
     }
     
 }

@@ -14,7 +14,6 @@ class XMLDocTests: XMLBaseTest {
     func testTraversal() {
         
         do {
-            
             let doc = try loadHTHLDoc()
             
             let root = doc.root
@@ -31,11 +30,9 @@ class XMLDocTests: XMLBaseTest {
         } catch {
             XCTFail("\(error)")
         }
-        
     }
     
     func testRemoveByXpath() throws {
-        
         let doc = try XMLDocument(html: testHTML)
         
         var paras = try doc?.query(xpath: "//*/p")
@@ -45,7 +42,6 @@ class XMLDocTests: XMLBaseTest {
         
         paras = try doc?.query(xpath: "//*/p")
         XCTAssertEqual(2, paras?.count)
-        
     }
 
 }

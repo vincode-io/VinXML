@@ -14,7 +14,6 @@ class XMLAttributesTests: XMLBaseTest {
     
 
     func testAttributes() throws {
-        
         let doc = try XMLDocument(html: testHTML)
         
         let firstPara = try doc?.queryFirst(xpath: "//*[@id='first']")
@@ -31,7 +30,6 @@ class XMLAttributesTests: XMLBaseTest {
         firstPara?.attributes["newAtt"] = nil
         firstParaAgain = try doc?.queryFirst(xpath: "//*[@newAtt='anotherValue']")
         XCTAssertNil(firstParaAgain)
-        
     }
     
 }

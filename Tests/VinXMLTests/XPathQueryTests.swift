@@ -12,9 +12,7 @@ import XCTest
 class XPathQueryTests: XMLBaseTest {
     
     func testElementContent() {
-        
         do {
-            
             let doc = try loadHTHLDoc()
             
             let xpath = "//*[@class='entry-title']"
@@ -22,17 +20,13 @@ class XPathQueryTests: XMLBaseTest {
             XCTAssertNotNil(node)
             
             XCTAssertEqual(node?.content, "Company")
-            
         } catch {
             XCTFail("\(error)")
         }
-        
     }
     
     func testPropertyContent() {
-        
         do {
-            
             let doc = try loadHTHLDoc()
             
             let xpath = "//*[@property='og:description']"
@@ -43,15 +37,12 @@ class XPathQueryTests: XMLBaseTest {
             XCTAssertNotNil(contentAttr)
 
             XCTAssertEqual(contentAttr, "Mobile and Web Development")
-            
         } catch {
             XCTFail("\(error)")
         }
-        
     }
     
     func testNameSpaceQuery() throws {
-        
         let xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
         "<package xmlns=\"http://www.idpf.org/2007/opf\" version=\"3.0\" xml:lang=\"en\" unique-identifier=\"pub-id\">" +
         "<metadata xmlns:dc=\"http://purl.org/dc/elements/1.1/\">" +
@@ -70,7 +61,6 @@ class XPathQueryTests: XMLBaseTest {
         let dcCreator = try doc?.queryFirst(xpath: "//*/dc:creator")
         XCTAssertNotNil(dcCreator?.content)
         XCTAssertEqual("Maurice C Parker", dcCreator!.content!)
-        
     }
     
 }

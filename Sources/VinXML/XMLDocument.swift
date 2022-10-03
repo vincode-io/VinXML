@@ -28,7 +28,6 @@ public class XMLDocument: XMLXPath {
     }
     
     public init?(data: String, isXML: Bool, caseSensitive: Bool = true) throws {
-    
         guard !data.isEmpty else { return nil }
         
         let bytes = data.cString(using: .utf8)
@@ -57,7 +56,6 @@ public class XMLDocument: XMLXPath {
     }
     
     public func query(xpath: String) throws -> [XMLNode] {
-        
         guard let xPathObj = xmlXPathEvalExpression(xpath.xmlChars, pathCtxPtr) else { return [] }
         defer { xmlXPathFreeObject(xPathObj) }
         
@@ -67,7 +65,6 @@ public class XMLDocument: XMLXPath {
         let xnodes = nodePtrs.compactMap { XMLNode.init(doc: self, parent: nil, nodePtr: $0) }
         
         return xnodes
-        
     }
     
     public func replace(this: XMLNode, withThis: XMLNode) {
