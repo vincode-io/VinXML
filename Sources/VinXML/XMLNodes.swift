@@ -6,7 +6,7 @@
 //  Copyright © 2017 Vincode. All rights reserved.
 //
 
-public class XMLNodes: Sequence {
+class XMLNodes: Sequence {
     
     var root: XMLNode?
 

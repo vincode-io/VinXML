@@ -20,13 +20,13 @@ class XMLDocTests: XMLBaseTest {
             let root = doc.root
             XCTAssertNotNil(root)
             
-            let head = root?.firstChild(forName: "head")
+			let head = root?["head"]?.first
             XCTAssertNotNil(head)
             XCTAssertEqual(head!.type, XMLNodeType.ElementNode)
             
-            let metas = head!.children(forName: "meta")
+            let metas = head!["meta"]
             XCTAssertNotNil(metas)
-            XCTAssertEqual(metas.count, 12)
+            XCTAssertEqual(metas!.count, 12)
             
         } catch {
             XCTFail("\(error)")

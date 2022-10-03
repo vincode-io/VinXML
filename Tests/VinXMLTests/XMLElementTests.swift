@@ -12,7 +12,6 @@ import XCTest
 class XMLElementTests: XMLBaseTest {
     
    func testRenameNode() throws {
-        
         let doc = try XMLDocument(html: testHTML)
         
         var spans = try doc?.query(xpath: "//*/span")
@@ -25,11 +24,9 @@ class XMLElementTests: XMLBaseTest {
         
         let ems = try doc?.query(xpath: "//*/em")
         XCTAssertEqual(1, ems?.count)
-        
     }
     
     func testNextSibling() throws {
-        
         let doc = try XMLDocument(html: testHTML)
         let firstPara = try doc?.queryFirst(xpath: "//*[@id='first']")
         
@@ -38,39 +35,42 @@ class XMLElementTests: XMLBaseTest {
         
         nextElement = nextElement!.nextSibling()
         XCTAssertEqual("third", nextElement!.attributes["id"])
-    
     }
     
     func testSearches() throws {
-    
         let doc = try XMLDocument(html: testHTML)
         let thirdPara = try doc?.queryFirst(xpath: "//*[@id='third']")
         
-        let filterSpans = thirdPara?.children(forName: "span")
-        XCTAssertEqual(3, filterSpans?.count)
-        
+        let findCaseSensitiveSpans = thirdPara?["span"]
+		XCTAssertNotNil(findCaseSensitiveSpans)
+        XCTAssertEqual(3, findCaseSensitiveSpans?.count)
+		
+		let doNotFindCaseSensitiveSpans = thirdPara?["Span"]
+		XCTAssertNil(doNotFindCaseSensitiveSpans)
+
+		doc?.caseSensitive = false
+		
+		let findCaseInsensitiveSpans = thirdPara?["SpAn"]
+		XCTAssertNotNil(findCaseInsensitiveSpans)
+		XCTAssertEqual(3, findCaseInsensitiveSpans?.count)
+
         let spans = try thirdPara?.query(xpath: ".//span")
         XCTAssertEqual(3, spans?.count)
-        
     }
 
     func testEquatable() throws {
-        
         let doc = try XMLDocument(html: testHTML)
         let firstFirst = try doc?.queryFirst(xpath: "//*[@id='first']")
         let secondFirst = try doc?.queryFirst(xpath: "//*[@id='first']")
         XCTAssertEqual(firstFirst, secondFirst)
-        
     }
     
     func testIndexOf() throws {
-        
         let doc = try XMLDocument(html: testHTML)
         let first = try doc?.queryFirst(xpath: "//*[@id='first']")
-        let secondFirst = first!.children[1]
-        let secondFirstIndex = first!.children.index(of: secondFirst!)
+        let secondFirst = first![1]
+        let secondFirstIndex = first!.index(of: secondFirst!)
         XCTAssertEqual(1, secondFirstIndex)
-        
     }
     
 }

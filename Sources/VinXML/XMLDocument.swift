@@ -13,20 +13,21 @@ public class XMLDocument: XMLXPath {
     
     var docPtr: xmlDocPtr!
     var pathCtxPtr: xmlXPathContextPtr!
+	var caseSensitive: Bool
     
     public var raw: String? {
         return root?.raw
     }
     
-    public convenience init?(xml: String) throws {
-        try self.init(data: xml, isXML: true)
+	public convenience init?(xml: String, caseSensitive: Bool = true) throws {
+        try self.init(data: xml, isXML: true, caseSensitive: caseSensitive)
     }
     
-    public convenience init?(html: String) throws {
-        try self.init(data: html, isXML: false)
+    public convenience init?(html: String, caseSensitive: Bool = true) throws {
+        try self.init(data: html, isXML: false, caseSensitive: caseSensitive)
     }
     
-    public init?(data: String, isXML: Bool) throws {
+    public init?(data: String, isXML: Bool, caseSensitive: Bool = true) throws {
     
         guard !data.isEmpty else { return nil }
         
@@ -44,6 +45,7 @@ public class XMLDocument: XMLXPath {
 
         pathCtxPtr = xmlXPathNewContext(docPtr)
 
+		self.caseSensitive = caseSensitive
     }
     
     public var root: XMLNode? {

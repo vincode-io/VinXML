@@ -77,11 +77,12 @@ public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
             return nil
         }
     }
-    
-    public lazy var siblings: XMLNodes = XMLNodes(root: self)
-    public lazy var children: XMLNodes = XMLNodes(doc: self.doc, parent: self)
-    public lazy var attributes: XMLAttributes = XMLAttributes(parent: self)
-    public lazy var type: XMLNodeType = XMLNodeType(rawValue: Int(self.nodePtr.pointee.type.rawValue))!
+
+	public lazy var attributes: XMLAttributes = XMLAttributes(parent: self)
+	public lazy var type: XMLNodeType = XMLNodeType(rawValue: Int(self.nodePtr.pointee.type.rawValue))!
+
+    private lazy var siblings: XMLNodes = XMLNodes(root: self)
+	private lazy var children: XMLNodes = XMLNodes(doc: self.doc, parent: self)
    
     public init?(doc: XMLDocument?, parent: XMLNode?, nodePtr: xmlNodePtr!) {
         self.doc = doc
@@ -113,22 +114,17 @@ public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
 
     //MARK: Useful traversal functions.
 
-    public func hasChildren() -> Bool {
-        return !self.children.isEmpty
-    }
-    
-    public func children(forName name: String) -> [XMLNode] {
-        return self.children.filter { $0.name == name }
-    }
-    
-    public func firstChild() -> XMLNode? {
-        return self.children.first
-    }
-
-    public func firstChild(forName name: String) -> XMLNode? {
-        return self.children(forName: name).first
-    }
-
+	public subscript(_ name: String) -> [XMLNode]? {
+		let results = self.children.filter {
+			if doc?.caseSensitive ?? true {
+				return $0.name == name
+			} else {
+				return $0.name?.caseInsensitiveCompare(name) == .orderedSame
+			}
+		}
+		return results.isEmpty ? nil : results
+	}
+	
     public func nextSibling() -> XMLNode? {
         if let nextNodePtr = xmlNextElementSibling(nodePtr) {
             return XMLNode.init(doc: doc, parent: parent, nodePtr: nextNodePtr)
@@ -149,4 +145,27 @@ public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
         }
     }
     
+}
+
+extension XMLNode: Sequence {
+	
+	public var isEmpty: Bool {
+		return children.isEmpty
+	}
+	
+	public var first: XMLNode? {
+		return children.first
+	}
+	
+	public func index(of findElement: XMLNode) -> Int? {
+		return children.index(of: findElement)
+	}
+	
+	public subscript(index: Int) -> XMLNode? {
+		return children[index]
+	}
+	
+	public func makeIterator() -> AnyIterator<XMLNode> {
+		return children.makeIterator()
+	}
 }
