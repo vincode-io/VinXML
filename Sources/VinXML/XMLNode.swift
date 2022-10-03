@@ -30,6 +30,7 @@ public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
         }
     }
     
+	/// Returns all the text under this element including from child elements
     public var content: String? {
         let content = xmlNodeGetContent(nodePtr)
         defer { xmlFree(content) }
@@ -40,6 +41,7 @@ public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
         }
     }
     
+	/// Only returns the text content for this element
     public var text: String? {
         let text = xmlNodeListGetString(doc?.docPtr, nodePtr.pointee.children, 1)
         defer { xmlFree(text) }
