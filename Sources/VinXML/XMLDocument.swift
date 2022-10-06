@@ -19,19 +19,29 @@ public class XMLDocument: XMLXPath {
         return root?.raw
     }
     
+	public convenience init?(xml: Data, caseSensitive: Bool = true) throws {
+		guard let xmlString = String(data: xml, encoding: .utf8) else { return nil }
+		try self.init(string: xmlString, isXML: true, caseSensitive: caseSensitive)
+	}
+	
 	public convenience init?(xml: String, caseSensitive: Bool = true) throws {
-        try self.init(data: xml, isXML: true, caseSensitive: caseSensitive)
+        try self.init(string: xml, isXML: true, caseSensitive: caseSensitive)
     }
     
+	public convenience init?(html: Data, caseSensitive: Bool = true) throws {
+		guard let htmlString = String(data: html, encoding: .utf8) else { return nil }
+		try self.init(string: htmlString, isXML: false, caseSensitive: caseSensitive)
+	}
+	
     public convenience init?(html: String, caseSensitive: Bool = true) throws {
-        try self.init(data: html, isXML: false, caseSensitive: caseSensitive)
+        try self.init(string: html, isXML: false, caseSensitive: caseSensitive)
     }
     
-    public init?(data: String, isXML: Bool, caseSensitive: Bool = true) throws {
-        guard !data.isEmpty else { return nil }
+    init?(string: String, isXML: Bool, caseSensitive: Bool = true) throws {
+        guard !string.isEmpty else { return nil }
         
-        let bytes = data.cString(using: .utf8)
-        let length = CInt(data.lengthOfBytes(using: .utf8))
+        let bytes = string.cString(using: .utf8)
+        let length = CInt(string.lengthOfBytes(using: .utf8))
         let encoding = CFStringGetCStringPtr(nil, CFStringBuiltInEncodings.UTF8.rawValue)
 
         let options: CInt = isXML ? 1 : (1 << 5 | 1 << 6)
