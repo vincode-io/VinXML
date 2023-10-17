@@ -13,7 +13,7 @@ let package = Package(
 			targets: ["VinXML"]),
 	],
 	targets: [
-		.systemLibrary(name: "libxml2", pkgConfig: "libxml2"),
+		.systemLibrary(name: "libxml2"),
 		.target(
 			name: "VinXML",
 			dependencies: ["libxml2"]),
