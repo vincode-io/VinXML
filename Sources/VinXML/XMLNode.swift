@@ -10,7 +10,7 @@ import libxml2
 
 public class XMLNode: XMLXPath, XMLVisitorHost, Equatable {
 
-    public weak var doc: XMLDocument?
+    public var doc: XMLDocument?
     public weak var parent: XMLNode?
     var nodePtr: xmlNodePtr!
     
